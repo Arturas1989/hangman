@@ -1,0 +1,112 @@
+.hang-container{
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+
+.hang-container > *, .corner-hang, .body-container{
+  position: absolute;
+}
+
+.top-hang, .left-hang, .corner-hang, .bottom-hang{
+  background-color: var(--hang-color);
+}
+
+.top-hang{
+  top: 0;
+  width: var(--top-hang-width);
+  height: var(--stick-thickness);
+}
+
+.bottom-hang{
+  bottom: 0;
+  width: 100%;
+  height: var(--stick-thickness);
+}
+
+.left-hang{
+  left: var(--left-stick);
+  height: 100%;
+  width: var(--stick-thickness);
+}
+
+.square{
+  left: var(--left-stick);
+  width: var(--square-width);
+  padding-top: var(--square-width);
+  position: relative;
+}
+
+.corner-hang{
+  height: calc(hypot(100%, 100%) - var(--stick-thickness) - 2px);
+  width: var(--stick-thickness);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.hangman{
+  position: absolute;
+  top: 0;
+  left: var(--top-stick-position);
+  height: 100%;
+}
+
+.body-container{
+  height: var(--hang-single-part-height);
+}
+
+.top-stick, .body{
+  height: var(--hang-single-part-height);
+  width: var(--stick-thickness);
+  background-color: var(--hang-color);
+}
+
+.body{
+  height: 100%;
+
+}
+
+.head{
+  height: var(--hang-single-part-height);
+  transform: translateX(calc(-50% + var(--stick-thickness) / 2));
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: var(--stick-thickness) solid var(--hang-color);
+}
+
+.right-arm-square, .left-arm-square, .right-leg-square, .left-leg-square{
+  position: absolute;
+  top: 0;
+  height: 60%;
+  aspect-ratio: 1 / 1;
+  
+}
+
+.right-leg-square, .left-leg-square{
+  top: auto;
+  bottom: 0;
+  transform: translateY(calc(100% - var(--stick-thickness)));
+}
+
+.left-leg-square{
+  transform: translate(calc(-100% + var(--stick-thickness)), calc(100% - var(--stick-thickness)));
+}
+
+.left-arm-square{
+  transform: translateX(calc(-100% + var(--stick-thickness)));
+}
+
+.right-arm, .left-arm, .right-leg, .left-leg{
+  position: absolute;
+  width: var(--stick-thickness);
+  height: calc(hypot(100%, 100%) - var(--stick-thickness) - 1px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(135deg);
+  background-color: var(--hang-color);
+}
+
+.left-arm, .left-leg{
+  transform: translate(-50%,-50%) rotate(45deg);
+}
