@@ -19,12 +19,14 @@ function App() {
             <SingleData>Subject: technology</SingleData>
           </div>
         </div>
-        <Hang/>
-        <img className='notebook' src={Notebook} alt="" />
-        <div className="words">
-          <Word word={'abc'}/>
-          <KeyBoard/>
+        <div className="word-guesser">
+          <Hang/>
+          <div className="words">
+            <Word word={'abc'}/>
+            <KeyBoard/>
+          </div>
         </div>
+        <img className='notebook' src={Notebook} alt="" />
       </div>
     </main>
   )
