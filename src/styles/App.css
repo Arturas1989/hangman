@@ -25,6 +25,14 @@
   box-shadow: 0 0 10px rgb(171, 164, 164);
 }
 
+.word-guesser{
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  width: 100%;
+  gap: 20px;
+}
+
 .notebook{
   top: 0;
   left: 0;
@@ -48,4 +56,19 @@
   width: 100%;
   align-self: center;
   gap: 20px;
+}
+
+@media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  .word-guesser{
+    flex-direction: row;
+    gap: 10%;
+  }
+  .hang-container{
+    width: 40%;
+    height: 80%;
+  }
+  .words{
+    align-self: flex-start;
+    width: 40%;
+  }
 }
