@@ -1,0 +1,29 @@
+.keyboard{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 10px;
+  width: 100%;
+}
+
+.letter > span{
+  width: fit-content;
+}
+.letter{
+  text-transform: uppercase;
+  width: 20px;
+  border-bottom: 5px solid blue;
+  display: flex;
+  justify-content: center;
+}
+
+.key-row{
+  display: flex;
+  width: fit-content;
+  align-self: center;
+  gap: 10px;
+}
+
+.key-row > .letter{
+  border: none;
+}

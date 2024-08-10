@@ -1,0 +1,9 @@
+:root{
+  --stick-thickness: 5px;
+  --square-width: 50px;
+  --left-stick: 5%;
+  --top-hang-width: 50%;
+  --top-stick-position: calc(var(--top-hang-width) * 0.8);
+  --hang-color: black;
+  --hang-single-part-height: 20%;
+}

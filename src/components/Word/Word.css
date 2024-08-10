@@ -1,0 +1,5 @@
+.word-guess{
+  display: flex;
+  gap: 5px;
+  align-self: center;
+}
