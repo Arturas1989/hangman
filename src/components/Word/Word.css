@@ -2,4 +2,5 @@
   display: flex;
   gap: 5px;
   align-self: center;
+  height: 2rem;
 }
