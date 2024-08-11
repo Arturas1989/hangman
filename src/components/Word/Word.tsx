@@ -1,11 +1,10 @@
-import { Letter } from "../Letters/Letter";
 
 type WordProps = {
-  word: string;
+  splitIntoLetters: () => JSX.Element[];
 };
 
-export const Word = ({ word }: WordProps) => {
+export const Word = ({ splitIntoLetters }: WordProps) => {
   return (
-    <div className="word-guess">{word.split('').map(letter=> <Letter>{letter}</Letter>)}</div>
+    <div className="word-guess">{splitIntoLetters()}</div>
   )
 };
