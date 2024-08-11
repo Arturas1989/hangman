@@ -9,12 +9,17 @@
 .letter > span{
   width: fit-content;
 }
+
 .letter{
   text-transform: uppercase;
   width: 20px;
   border-bottom: 5px solid blue;
   display: flex;
   justify-content: center;
+}
+
+.letter:hover{
+  cursor: pointer;
 }
 
 .key-row{
