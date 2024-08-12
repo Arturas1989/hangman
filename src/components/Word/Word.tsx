@@ -1,10 +1,14 @@
+import React from "react";
 
 type WordProps = {
   splitIntoLetters: () => JSX.Element[];
 };
 
-export const Word = ({ splitIntoLetters }: WordProps) => {
+const Word = ({ splitIntoLetters }: WordProps) => {
+  console.log('word rendered')
   return (
     <div className="word-guess">{splitIntoLetters()}</div>
   )
 };
+
+export default React.memo(Word);
