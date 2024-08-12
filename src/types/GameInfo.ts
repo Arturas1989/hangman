@@ -1,5 +1,5 @@
 export type GameInfo = {
-    word: string;
+    guess: string;
     correctLetters: string[];
     incorrectLetters: string[];
 };
