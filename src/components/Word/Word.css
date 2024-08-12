@@ -1,6 +1,15 @@
 .word-guess{
   display: flex;
-  gap: 5px;
+  flex-wrap: wrap;
+  
   align-self: center;
-  height: 2rem;
+  
+}
+
+.word{
+  display: flex;
+  margin-top: 10px;
+  min-height: 1.8rem;
+  gap: 5px;
+  margin-left: 20px;
 }

@@ -1,8 +1,10 @@
+import React from "react";
+
 type HangProps = {
   name?: string;
 };
 
-export const Hang = ({ name }: HangProps) => {
+const Hang = ({ name }: HangProps) => {
   return (
     <div className="hang-container">
       <div className="top-hang"></div>
@@ -33,3 +35,5 @@ export const Hang = ({ name }: HangProps) => {
     </div>
   )
 };
+
+export default React.memo(Hang);

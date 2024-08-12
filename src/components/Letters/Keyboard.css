@@ -22,6 +22,10 @@
   cursor: pointer;
 }
 
+.word .letter:hover{
+  cursor: default;
+}
+
 .key-row{
   display: flex;
   width: fit-content;
@@ -31,4 +35,12 @@
 
 .key-row > .letter{
   border: none;
+}
+
+.correct{
+  background-color: lightgreen;
+}
+
+.wrong{
+  background-color: rgb(186, 63, 63);
 }

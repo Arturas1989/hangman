@@ -1,0 +1,1 @@
+export type GuessedLetter = 'correct' | 'wrong' | '';
