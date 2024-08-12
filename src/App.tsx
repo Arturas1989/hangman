@@ -1,17 +1,19 @@
 
 import './styles/App.css';
-import { SingleData } from './components/SingleData';
-import { Hang } from './components/Hang/Hang';
+import SingleData from './components/SingleData';
+import Hang from './components/Hang/Hang';
 import KeyBoard from './components/Letters/KeyBoard';
-import { Word } from './components/Word/Word';
+import Word from './components/Word/Word';
 import Notebook from './assets/notebook.png';
 import { useCallback, useState } from 'react';
-import { Letter } from './components/Letters/Letter';
+import Letter from './components/Letters/Letter';
 import { type GameInfo } from './types/GameInfo';
+import { useKeyPress } from './hooks/useKeyPress';
+import { GuessedLetter } from './types/GuessedLetter';
 
 function App() {
   const [gameInfo, setGameInfo] = useState<GameInfo>({
-    word: 'canada',
+    guess: 'canada canada canada canada canada canada',
     correctLetters: [],
     incorrectLetters: []
   });
@@ -20,17 +22,30 @@ function App() {
 
   const handleGuess = useCallback((letter: string) => {
     let lettersList: 'incorrectLetters' | 'correctLetters' = 'incorrectLetters';
-    if(gameInfo.word.includes(letter)) lettersList = 'correctLetters';
+    if(gameInfo.guess.includes(letter)) lettersList = 'correctLetters';
     setGameInfo((prev) => {
       let letters = [...prev[lettersList]]
       letters.push(letter)
       return {...prev, [lettersList] : letters};
     })
-  }, [gameInfo.word])
+  }, [gameInfo.guess])
+
+  const getLetterClassName = useCallback((letter: string): GuessedLetter => {
+    let className: GuessedLetter = '';
+    if(gameInfo.correctLetters.includes(letter)) className = 'correct';
+    if(gameInfo.incorrectLetters.includes(letter)) className = 'wrong';
+    return className;
+  }, [gameInfo.correctLetters, gameInfo.incorrectLetters]) 
+
+  useKeyPress(handleGuess);
+
+  const makeLetters = (word: string) => word.split('').map((letter, i)=> <Letter key={i}>{getLetter(letter)}</Letter>);
 
   const splitIntoLetters = () => {
-    return gameInfo.word.split('').map((letter, i)=> <Letter key={i}>{getLetter(letter)}</Letter>);
+    const words = gameInfo.guess.split(' ');
+    return words.map((word, i) => <div key={i} className="word">{makeLetters(word)}</div> );
   }
+
   return (
     <main className='game'>
       <div className="container column">
@@ -47,7 +62,7 @@ function App() {
           <Hang/>
           <div className="words">
             <Word splitIntoLetters={splitIntoLetters} />
-            <KeyBoard handleGuess={handleGuess}/>
+            <KeyBoard handleGuess={handleGuess} getLetterClassName={getLetterClassName}/>
           </div>
         </div>
         <img className='notebook' src={Notebook} alt="" />
