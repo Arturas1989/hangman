@@ -1,19 +1,21 @@
 import { ReactNode } from "react";
-import { Letter } from "./Letter";
+import Letter from "./Letter";
 import React from "react";
+import { GuessedLetter } from "../../types/GuessedLetter";
 
 type KeyBoardProps = {
-  handleGuess: (letter: string) => void
+  handleGuess: (letter: string) => void;
+  getLetterClassName: (letter: string) => GuessedLetter;
 }
 
-const KeyBoard = ({handleGuess}: KeyBoardProps) => {
+const KeyBoard = ({handleGuess, getLetterClassName}: KeyBoardProps) => {
   console.log('keyboard rendered')
   const letters = 'abcdefghijklmnopqrstuvwxyz';
   let row: ReactNode[] = [], count = 0, rowIndex = 0;
   return (
     <div className="keyboard">
       {letters.split('').reduce((acc: ReactNode[], letter, i) => {
-        row.push(<Letter key={letter} onClick={() => handleGuess(letter)}>{letter}</Letter>);
+        row.push(<Letter className={getLetterClassName(letter)} key={letter} onClick={() => handleGuess(letter)}>{letter}</Letter>);
         count++;
         if(count === 7 || i === letters.length - 1) {
           acc.push(<div key={rowIndex} className="key-row">{row}</div>)
