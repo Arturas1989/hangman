@@ -1,1 +1,1 @@
-export type GuessedLetter = 'correct' | 'wrong' | '';
+export type GuessedLetter = string;
