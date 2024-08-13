@@ -1,6 +1,6 @@
 import React from "react";
 import Piece from "./Piece";
-import { show } from "../../utils/constants";
+import { show } from "../../utils/helpers";
 
 type HangProps = {
   lives: number;
