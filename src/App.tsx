@@ -14,28 +14,36 @@ import { GuessedLetter } from './types/GuessedLetter';
 function App() {
   const [gameInfo, setGameInfo] = useState<GameInfo>({
     guess: 'canada canada canada canada canada canada',
+    lives: 6,
     correctLetters: [],
     incorrectLetters: []
   });
 
-  const getLetter = (letter: string) => gameInfo.correctLetters.includes(letter) ? letter : '';
+  const {guess, lives, correctLetters, incorrectLetters} = gameInfo
+
+  const getLetter = (letter: string) => correctLetters.includes(letter) ? letter : '';
 
   const handleGuess = useCallback((letter: string) => {
     let lettersList: 'incorrectLetters' | 'correctLetters' = 'incorrectLetters';
-    if(gameInfo.guess.includes(letter)) lettersList = 'correctLetters';
+    let minus = -1;
+    if(guess.includes(letter)){
+      lettersList = 'correctLetters';
+      minus = 0;
+    }  
     setGameInfo((prev) => {
-      let letters = [...prev[lettersList]]
-      letters.push(letter)
-      return {...prev, [lettersList] : letters};
+      if(prev.correctLetters.includes(letter) || prev.incorrectLetters.includes(letter) || prev.lives === 0) return prev;
+      let letters = [...prev[lettersList]];
+      letters.push(letter);
+      return {...prev, lives: prev.lives + minus, [lettersList] : letters};
     })
-  }, [gameInfo.guess])
+  }, [guess])
 
   const getLetterClassName = useCallback((letter: string): GuessedLetter => {
-    let className: GuessedLetter = '';
-    if(gameInfo.correctLetters.includes(letter)) className = 'correct';
-    if(gameInfo.incorrectLetters.includes(letter)) className = 'wrong';
+    let className: GuessedLetter = lives === 0 ? '' : 'pointer ';
+    if(correctLetters.includes(letter)) className += 'correct ';
+    if(incorrectLetters.includes(letter)) className += 'wrong';
     return className;
-  }, [gameInfo.correctLetters, gameInfo.incorrectLetters]) 
+  }, [correctLetters, incorrectLetters, lives])
 
   useKeyPress(handleGuess);
 
@@ -59,7 +67,7 @@ function App() {
           </div>
         </div>
         <div className="word-guesser">
-          <Hang/>
+          <Hang lives={lives}/>
           <div className="words">
             <Word splitIntoLetters={splitIntoLetters} />
             <KeyBoard handleGuess={handleGuess} getLetterClassName={getLetterClassName}/>
