@@ -1,10 +1,12 @@
 import React from "react";
+import Piece from "./Piece";
+import { show } from "../../utils/constants";
 
 type HangProps = {
-  name?: string;
+  lives: number;
 };
 
-const Hang = ({ name }: HangProps) => {
+const Hang = ({ lives }: HangProps) => {
   return (
     <div className="hang-container">
       <div className="top-hang"></div>
@@ -15,20 +17,20 @@ const Hang = ({ name }: HangProps) => {
       <div className="bottom-hang"></div>
       <div className="hangman">
         <div className="top-stick"></div>
-        <div className="head"></div>
+        <Piece className={`head ${show('head', lives)}`}/>
         <div className="body-container">
-          <div className="body"></div>
+          <Piece className={`body ${show('body', lives)}`}/>
           <div className="left-arm-square">
-            <div className="left-arm"></div>
+            <Piece className={`left-arm ${show('left-arm', lives)}`}/>
           </div>
           <div className="right-arm-square">
-            <div className="right-arm"></div>
+            <Piece className={`right-arm ${show('right-arm', lives)}`}/>
           </div>
           <div className="left-leg-square">
-            <div className="left-leg"></div>
+            <Piece className={`left-leg ${show('left-leg', lives)}`}/>
           </div>
           <div className="right-leg-square">
-            <div className="right-leg"></div>
+            <Piece className={`right-leg ${show('right-leg', lives)}`}/>
           </div>
         </div>
       </div>
