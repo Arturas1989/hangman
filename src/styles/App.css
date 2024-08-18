@@ -23,7 +23,7 @@
   margin: 20px;
   min-height: 90%;
   padding: 20px;
-  min-width: clamp(300px, 70%, 1000px);
+  width: clamp(300px, 70%, 1000px);
   gap: 20px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(171, 164, 164);
@@ -38,6 +38,7 @@
   min-height: 80%;
   min-width: 100%;
   gap: 20px;
+  justify-items: center;
 }
 
 .notebook{
@@ -53,9 +54,23 @@
 }
 
 .row1{
-  display: flex;
+  display: grid;
   grid-area: row1;
   justify-content: space-between;
+  grid-template-areas: 
+    "left middle right";
+}
+
+.left{
+  grid-area: left;
+}
+
+.middle{
+  grid-area: middle;
+}
+
+.right{
+  grid-area: right;
 }
 
 .words{
@@ -69,6 +84,7 @@
 
 .reset{
   justify-self: center;
+  align-self: center;
   grid-area: reset;
   padding: 10px;
   border-radius: 10px;
@@ -91,5 +107,14 @@
   }
   .hang-container{
     min-height: 80%;
+  }
+}
+
+@media only screen and (max-width: 700px){
+  .row1{
+    grid-template-areas:
+      "middle middle middle" 
+      "left right right";
+    gap: 10px;
   }
 }
