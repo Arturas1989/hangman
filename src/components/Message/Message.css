@@ -1,0 +1,21 @@
+.show-box{
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 1s linear;
+}
+.win{
+  background-color: lightgreen;
+}
+
+.lose{
+  background-color: rgb(238, 88, 88);
+}
+
+.not-visible{
+  visibility: hidden;
+  opacity: 0;
+}
