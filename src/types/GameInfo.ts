@@ -3,4 +3,7 @@ export type GameInfo = {
     lives: number;
     correctLetters: string[];
     incorrectLetters: string[];
+    lettersCount: number;
+    winningScore: number;
+    losingScore: number;
 };

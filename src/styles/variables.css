@@ -6,4 +6,5 @@
   --top-stick-position: calc(var(--top-hang-width) * 0.8);
   --hang-color: black;
   --hang-single-part-height: 20%;
+  --letter-height: 1.8rem;
 }

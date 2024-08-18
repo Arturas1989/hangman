@@ -1,7 +1,8 @@
 .hang-container{
   position: relative;
-  width: 100%;
-  height: 50%;
+  grid-area: hang-container;
+  min-width: 100%;
+  min-height: 200px;
 }
 
 .hang-container > *, .corner-hang, .body-container{

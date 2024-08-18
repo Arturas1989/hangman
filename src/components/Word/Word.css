@@ -2,14 +2,16 @@
   display: flex;
   flex-wrap: wrap;
   
-  align-self: center;
-  
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+  min-height: fit-content;
 }
 
 .word{
   display: flex;
-  margin-top: 10px;
-  min-height: 1.8rem;
+  min-height: var(--letter-height);
   gap: 5px;
-  margin-left: 20px;
+  margin-bottom: -10px;
+  min-height: var(--letter-height);
 }
