@@ -14,7 +14,7 @@ import { gameFinished, getLetter, isGuessed, isLost, isWin, messageClass, unique
 import { Message } from './components/Message/Message';
 
 function App() {
-  const wordGuess = 'canada canada canada canada canada canada';
+  const wordGuess = 'canada canada canada canada canada canada canada canada';
   const uniqueLettersCount = uniqueLetters(wordGuess).length;
   const [gameInfo, setGameInfo] = useState<GameInfo>({
     guess: wordGuess,
@@ -27,7 +27,6 @@ function App() {
   });
 
   const handleResetGame = () => {
-    const wordGuess = 'canadaa canada canada canada canada canada canada canada';
     const uniqueLettersCount = uniqueLetters(wordGuess).length;
     setGameInfo({
       guess: wordGuess,
