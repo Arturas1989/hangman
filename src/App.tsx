@@ -10,7 +10,7 @@ import Letter from './components/Letters/Letter';
 import { type GameInfo } from './types/GameInfo';
 import { useKeyPress } from './hooks/useKeyPress';
 import { GuessedLetter } from './types/GuessedLetter';
-import { gameFinished, getLetter, isGuessed, messageClass, uniqueLetters } from './utils/helpers';
+import { gameFinished, getLetter, isGuessed, isLost, isWin, messageClass, uniqueLetters } from './utils/helpers';
 import { Message } from './components/Message/Message';
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
     })
   }
 
-  const {guess, lives, correctLetters, incorrectLetters} = gameInfo
+  const {guess, lives, correctLetters, incorrectLetters, winningScore, losingScore} = gameInfo
 
   const handleGuess = useCallback((letter: string) => {
     let lettersList: 'incorrectLetters' | 'correctLetters' = 'incorrectLetters';
@@ -53,7 +53,14 @@ function App() {
       if(isGuessed(letter, gameInfo) || gameFinished(gameInfo)) return prev;
       let letters = [...prev[lettersList]];
       letters.push(letter);
-      return {...prev, lives: prev.lives + minus, [lettersList] : letters};
+      let newGameInfo = {
+        ...prev, 
+        lives: prev.lives + minus, 
+        [lettersList] : letters,
+      }
+      newGameInfo.winningScore += +isWin(newGameInfo);
+      newGameInfo.losingScore += +isLost(newGameInfo.lives);
+      return newGameInfo;
     })
   }, [guess, gameInfo])
 
@@ -80,8 +87,8 @@ function App() {
       <div className="container">
         <div className="row1">
           <div className="left flex column">
-            <SingleData>Round: 1</SingleData>
-            <SingleData>Record: 2</SingleData>
+            <SingleData>Wins: {winningScore}</SingleData>
+            <SingleData>Losses: {losingScore}</SingleData>
           </div>
           <div className="middle">
             <Message className={messageClassName}>{message}</Message>
