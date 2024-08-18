@@ -1,6 +1,6 @@
-.game, .container{
-  height: 100dvh;
-  width: 100dvw;
+.game{
+  min-height: 100dvh;
+  min-width: 100dvw;
   display: flex;
   justify-content: center;
 }
@@ -15,21 +15,28 @@
 
 .container{
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-areas: 
+    "row1"
+    "word-guesser"
+    "reset";
   margin: 20px;
-  height: 90%;
-  padding: 10px;
-  width: clamp(300px, 70%, 700px);
+  min-height: 90%;
+  padding: 20px;
+  min-width: clamp(300px, 70%, 1000px);
   gap: 20px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(171, 164, 164);
 }
 
 .word-guesser{
-  display: flex;
-  flex-direction: column;
-  height: 80%;
-  width: 100%;
+  display: grid;
+  grid-template-areas: 
+    "hang-container"
+    "words";
+  grid-area: word-guesser;
+  min-height: 80%;
+  min-width: 100%;
   gap: 20px;
 }
 
@@ -47,28 +54,42 @@
 
 .row1{
   display: flex;
+  grid-area: row1;
   justify-content: space-between;
 }
 
 .words{
   display: flex;
+  grid-area: words;
   flex-direction: column;
   width: 100%;
   align-self: center;
   gap: 20px;
 }
 
+.reset{
+  justify-self: center;
+  grid-area: reset;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(176, 182, 233);
+  color: rgb(3, 38, 53)
+}
+
+.reset:hover{
+  background-color: rgb(3, 38, 53);
+  color: rgb(176, 182, 233)
+}
+
 @media (orientation: landscape) and (hover: none) and (pointer: coarse) {
   .word-guesser{
     flex-direction: row;
+    grid-template-areas: 
+      "hang-container words";
+    grid-template-columns: 1fr 1fr;
     gap: 10%;
   }
   .hang-container{
-    width: 40%;
-    height: 80%;
-  }
-  .words{
-    align-self: flex-start;
-    width: 40%;
+    min-height: 80%;
   }
 }
