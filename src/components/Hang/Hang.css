@@ -1,7 +1,7 @@
 .hang-container{
   position: relative;
   grid-area: hang-container;
-  min-width: 100%;
+  width: clamp(100px, 100%, 500px);
   min-height: 200px;
 }
 
