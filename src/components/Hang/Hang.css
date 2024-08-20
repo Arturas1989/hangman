@@ -2,7 +2,7 @@
   position: relative;
   grid-area: hang-container;
   width: clamp(100px, 100%, 500px);
-  min-height: 200px;
+  min-height: 100%;
 }
 
 .hang-container > *, .corner-hang, .body-container{
