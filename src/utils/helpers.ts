@@ -1,3 +1,4 @@
+import { CountryData } from "../types/CountryData";
 import { GameInfo } from "../types/GameInfo";
 import { Message } from "../types/Message";
 import { Pieces } from "../types/Pieces";
@@ -30,3 +31,11 @@ export const messageClass = (gameInfo: GameInfo): Message => {
 }
 
 export const isGuessed = (letter: string, gameInfo: GameInfo) => gameInfo.correctLetters.includes(letter) || gameInfo.incorrectLetters.includes(letter)
+
+export const getRandomIndex = (arrLength: number) => Math.floor(Math.random() * arrLength);
+
+export const getRandomCountryInfo = (countryData: CountryData) => {
+  const countriesInfo = Object.entries(countryData);
+  const randomIndex = getRandomIndex(countriesInfo.length);
+  return countriesInfo[randomIndex];
+} 
