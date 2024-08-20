@@ -5,6 +5,12 @@
   justify-content: center;
 }
 
+.spinner{
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
+
 .flex{
   display: flex;
 }
@@ -20,25 +26,38 @@
     "row1"
     "word-guesser"
     "reset";
-  margin: 20px;
+  grid-template-rows: 1.5fr 9.5fr 1.5fr;
+  margin: 10px;
   min-height: 90%;
   padding: 20px;
   width: clamp(300px, 70%, 1000px);
-  gap: 20px;
+  gap: 15px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(171, 164, 164);
+}
+
+.flag{
+  grid-area: flag;
+}
+
+.flag > span{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .word-guesser{
   display: grid;
   grid-template-areas: 
-    "hang-container"
-    "words";
+    "hang-container flag words";
+  grid-template-columns: 1.5fr 0.5fr 1fr;
   grid-area: word-guesser;
   min-height: 80%;
   min-width: 100%;
-  gap: 20px;
+  gap: 40px;
   justify-items: center;
+  align-items: center;
 }
 
 .notebook{
@@ -58,19 +77,19 @@
   grid-area: row1;
   justify-content: space-between;
   grid-template-areas: 
-    "left middle right";
+    "left middle";
+  height: fit-content;
 }
 
 .left{
   grid-area: left;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .middle{
   grid-area: middle;
-}
-
-.right{
-  grid-area: right;
+  min-height: 45px;
 }
 
 .words{
@@ -97,16 +116,39 @@
   color: rgb(176, 182, 233)
 }
 
-@media only screen and (orientation: landscape) {
+
+@media only screen and (orientation: landscape)
+and (max-width: 767px)
+and (min-width: 300px) {
   .word-guesser{
-    flex-direction: row;
     grid-template-areas: 
-      "hang-container words";
+      "hang-container flag words";
     grid-template-columns: 1fr 1fr;
     gap: 10%;
   }
   .hang-container{
     min-height: 80%;
+  }
+  
+  .flag img {
+    width: 80%;
+
+  }
+}
+
+@media only screen and (max-width: 860px){
+  .word-guesser{
+    grid-template-areas:
+      "flag flag" 
+      "hang-container words";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.3fr 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+  }
+  .flag img{
+    width: 50%;
   }
 }
 
@@ -114,7 +156,21 @@
   .row1{
     grid-template-areas:
       "middle middle middle" 
-      "left right right";
+      "left left left";
     gap: 10px;
+  }
+
+  .word-guesser{
+    grid-template-areas:
+      "hang-container flag" 
+      "words words";
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: self-start;
+    gap: 10px;
+  }
+
+  .flag img{
+    width: 100%;
   }
 }
