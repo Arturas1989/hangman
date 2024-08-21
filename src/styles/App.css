@@ -3,6 +3,7 @@
   min-width: 100dvw;
   display: flex;
   justify-content: center;
+  padding: 30px;
 }
 
 .spinner{
@@ -26,8 +27,8 @@
     "row1"
     "word-guesser"
     "reset";
-  grid-template-rows: 1.5fr 9.5fr 1.5fr;
-  margin: 10px;
+  grid-template-rows: 1.5fr 8fr 1.5fr;
+  
   min-height: 90%;
   padding: 20px;
   width: clamp(300px, 70%, 1000px);
@@ -89,7 +90,7 @@
 
 .middle{
   grid-area: middle;
-  min-height: 45px;
+  min-height: 65px;
 }
 
 .words{
@@ -99,6 +100,13 @@
   width: 100%;
   align-self: center;
   gap: 20px;
+}
+
+.reset-row{
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  gap: 20px
 }
 
 .reset{
