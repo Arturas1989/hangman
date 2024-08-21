@@ -24,6 +24,24 @@ export const isLost = (lives: number) => lives === 0;
 
 export const isWin = (gameInfo: GameInfo) => gameInfo.correctLetters.length === gameInfo.lettersCount;
 
+export const updatedGame = (gameInfo: GameInfo, letter: string) => {
+    let lettersList: 'incorrectLetters' | 'correctLetters' = 'incorrectLetters';
+    let minus = -1;
+    if(gameInfo.guess.includes(letter)){
+      lettersList = 'correctLetters';
+      minus = 0;
+    }
+
+    let letters = [...gameInfo[lettersList]];
+    letters.push(letter);
+    let newGameInfo = {
+      ...gameInfo, 
+      lives: gameInfo.lives + minus, 
+      [lettersList] : letters,
+    }
+    return newGameInfo
+}
+
 export const messageClass = (gameInfo: GameInfo): Message => {
   if(isWin(gameInfo)) return messages['win'];
   if(isLost(gameInfo.lives)) return messages['lose'];
