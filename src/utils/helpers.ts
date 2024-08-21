@@ -14,7 +14,8 @@ export const uniqueLetters = (text: string) => {
   return [...new Set(text.replaceAll(/\s+/g,'').split(''))];
 }
 
-export const getLetter = (letter: string, correctLetters: string[]) => correctLetters.includes(letter) ? letter : '';
+export const getLetter = (letter: string, correctLetters: string[], isGamePaused: boolean) => 
+  isGamePaused || correctLetters.includes(letter) ? letter : '';
 
 export const gameFinished = (gameInfo: GameInfo) => {
   return isLost(gameInfo.lives) || isWin(gameInfo);
@@ -39,12 +40,19 @@ export const updatedGame = (gameInfo: GameInfo, letter: string) => {
       lives: gameInfo.lives + minus, 
       [lettersList] : letters,
     }
-    return newGameInfo
+    const isWon = isWin(newGameInfo);
+    const isLoss = isLost(newGameInfo.lives);
+    newGameInfo.winningScore += +isWon;
+    newGameInfo.losingScore += +isLoss;
+    newGameInfo.wasWin = isWon;
+    newGameInfo.wasLoss = isLoss;
+    return newGameInfo;
 }
 
 export const messageClass = (gameInfo: GameInfo): Message => {
-  if(isWin(gameInfo)) return messages['win'];
-  if(isLost(gameInfo.lives)) return messages['lose'];
+  // console.log(gameInfo);
+  if(gameInfo.wasWin) return messages['win'];
+  if(gameInfo.wasLoss) return messages['lose'];
   return messages['default'];
 }
 
