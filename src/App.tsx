@@ -9,9 +9,13 @@ import { Game } from './components/Game';
 function App() {
   const [gameInfo, setGameInfo] = useState<GameInfo>({
     guess: '',
+    prevGuess: '',
     flag_url: '',
     game_loaded: false,
     needNewWord: true,
+    wasWin: false,
+    wasLoss: false,
+    gamePaused: false,
     lives: 6,
     correctLetters: [],
     incorrectLetters: [],
