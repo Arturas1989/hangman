@@ -13,18 +13,22 @@ export const useNewWord = (setGameInfo: React.Dispatch<React.SetStateAction<Game
          const randomCountryInfo = getRandomCountryInfo(countryData);
          const [flag, country] = randomCountryInfo;
          const countryLower = country.toLowerCase();
-         setGameInfo({
+         setGameInfo((prev) => ({
           guess: countryLower,
+          prevGuess: prev.guess,
           flag_url: `https://flagcdn.com/160x120/${flag}.png`,
           game_loaded: true,
           needNewWord: false,
+          gamePaused: prev.gamePaused,
+          wasWin: prev.wasWin,
+          wasLoss: prev.wasLoss,
           lives: 6,
           correctLetters: [],
           incorrectLetters: [],
           lettersCount: uniqueLetters(countryLower).length,
-          winningScore: 0,
-          losingScore: 0,
-         });
+          winningScore: prev.winningScore,
+          losingScore: prev.losingScore,
+         }));
          console.log(1)
       } catch(e){
         console.log('failed to fetch')

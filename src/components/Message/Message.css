@@ -1,6 +1,7 @@
 .show-box{
   padding: 10px;
   border-radius: 10px;
+  width: 250px;
   color: white;
   font-weight: bold;
   visibility: visible;

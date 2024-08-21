@@ -6,10 +6,9 @@ import { GuessedLetter } from "../../types/GuessedLetter";
 type KeyBoardProps = {
   handleGuess: (letter: string) => void;
   getLetterClassName: (letter: string) => GuessedLetter;
-  isGameFinished: boolean;
 }
 
-const KeyBoard = ({handleGuess, getLetterClassName, isGameFinished}: KeyBoardProps) => {
+const KeyBoard = ({handleGuess, getLetterClassName}: KeyBoardProps) => {
   console.log('keyboard rendered')
   const letters = 'abcdefghijklmnopqrstuvwxyz';
   let row: ReactNode[] = [], count = 0, rowIndex = 0;
@@ -20,7 +19,7 @@ const KeyBoard = ({handleGuess, getLetterClassName, isGameFinished}: KeyBoardPro
           <Letter 
             className={getLetterClassName(letter)} 
             key={letter} 
-            onClick={isGameFinished ? undefined : () => handleGuess(letter)}>
+            onClick={() => handleGuess(letter)}>
 
             {letter}
           </Letter>
