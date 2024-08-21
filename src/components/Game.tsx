@@ -8,7 +8,7 @@ import Letter from '../components/Letters/Letter';
 import { type GameInfo } from '../types/GameInfo';
 import { useKeyPress } from '../hooks/useKeyPress';
 import { GuessedLetter } from '../types/GuessedLetter';
-import { gameFinished, getLetter, isGuessed, isLost, isWin, messageClass } from '../utils/helpers';
+import { gameFinished, getLetter, isGuessed, isLost, isWin, messageClass, updatedGame } from '../utils/helpers';
 import { Message } from '../components/Message/Message';
 
 
@@ -24,36 +24,26 @@ export const Game = ({ gameInfo, setGameInfo}: GameProps) => {
     setGameInfo((prev) => ({...prev, needNewWord: true}))
   }
 
-  const {guess, lives, correctLetters, incorrectLetters, winningScore, losingScore} = gameInfo
-
+  const {lives, correctLetters, incorrectLetters, winningScore, losingScore} = gameInfo
   const handleGuess = useCallback((letter: string) => {
-    let lettersList: 'incorrectLetters' | 'correctLetters' = 'incorrectLetters';
-    let minus = -1;
-    if(guess.includes(letter)){
-      lettersList = 'correctLetters';
-      minus = 0;
-    }  
-    setGameInfo((prev) => {
-      if(isGuessed(letter, gameInfo) || gameFinished(gameInfo)) return prev;
-      let letters = [...prev[lettersList]];
-      letters.push(letter);
-      let newGameInfo = {
-        ...prev, 
-        lives: prev.lives + minus, 
-        [lettersList] : letters,
-      }
+    console.log('pressed')
+      
+    setGameInfo((prevGame) => {
+      console.log(gameFinished(gameInfo))
+      if(isGuessed(letter, gameInfo) || gameFinished(prevGame)) return prevGame;
+      let newGameInfo = updatedGame(prevGame, letter);
       newGameInfo.winningScore += +isWin(newGameInfo);
       newGameInfo.losingScore += +isLost(newGameInfo.lives);
       return newGameInfo;
     })
-  }, [guess, gameInfo, setGameInfo])
+  }, [gameInfo, setGameInfo])
 
   const getLetterClassName = useCallback((letter: string): GuessedLetter => {
-    let className: GuessedLetter = lives === 0 ? '' : 'pointer ';
+    let className: GuessedLetter = gameFinished(gameInfo) ? '' : 'pointer ';
     if(correctLetters.includes(letter)) className += 'correct ';
     if(incorrectLetters.includes(letter)) className += 'wrong';
     return className;
-  }, [correctLetters, incorrectLetters, lives])
+  }, [correctLetters, incorrectLetters, gameInfo])
 
   useKeyPress(handleGuess);
 
@@ -87,7 +77,11 @@ export const Game = ({ gameInfo, setGameInfo}: GameProps) => {
           </div>
           <div className="words">
             <Word splitIntoLetters={splitIntoLetters} />
-            <KeyBoard handleGuess={handleGuess} getLetterClassName={getLetterClassName}/>
+            <KeyBoard 
+              handleGuess={handleGuess} 
+              getLetterClassName={getLetterClassName}
+              isGameFinished={gameFinished(gameInfo)}
+            />
           </div>
         </div>
         <button className='reset pointer' onClick={handleResetGame}>Restart the game</button>
