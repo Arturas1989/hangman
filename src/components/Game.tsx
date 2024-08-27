@@ -8,7 +8,7 @@ import Letter from '../components/Letters/Letter';
 import { type GameInfo } from '../types/GameInfo';
 import { useKeyPress } from '../hooks/useKeyPress';
 import { GuessedLetter } from '../types/GuessedLetter';
-import { gameFinished, getLetter, isGuessed, messageClass, updatedGame } from '../utils/helpers';
+import { gameFinished, getLetter, isGuessed, messageClass, showLetter, updatedGame } from '../utils/helpers';
 import { Message } from '../components/Message/Message';
 import { ResetButton } from './Buttons/ResetButton';
 
@@ -59,8 +59,12 @@ export const Game = ({ gameInfo, setGameInfo}: GameProps) => {
 
   useKeyPress(handleGuess);
 
-  const makeLetters = (word: string) => 
-    word.split('').map((letter, i)=> <Letter key={i}>{getLetter(letter, correctLetters, gameInfo.gamePaused)}</Letter>);
+  const makeLetters = (word: string) => {
+    return word.split('').map((letter, i)=> {
+      const isLetterVisible = showLetter(letter, correctLetters, gameInfo.gamePaused);
+      return <Letter key={i}>{getLetter(isLetterVisible, letter)}</Letter>
+    });
+  }
 
   const splitIntoLetters = () => {
     const words = gameInfo.guess.split(' ');
