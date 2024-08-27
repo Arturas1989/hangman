@@ -11,11 +11,14 @@ export const show = (piece: keyof Pieces, lives: number) => {
 }
 
 export const uniqueLetters = (text: string) => {
-  return [...new Set(text.replaceAll(/\s+/g,'').split(''))];
+  return [...new Set(text.replaceAll(/[^a-z]/gi,'').split(''))];
 }
 
-export const getLetter = (letter: string, correctLetters: string[], isGamePaused: boolean) => 
-  isGamePaused || correctLetters.includes(letter) ? letter : '';
+export const getLetter = (showLetter: boolean, letter: string) => showLetter ? letter : '';
+
+export const showLetter = (letter: string, correctLetters: string[], isGamePaused: boolean) => {
+  return isGamePaused || correctLetters.includes(letter) || !letters.includes(letter);
+}
 
 export const gameFinished = (gameInfo: GameInfo) => {
   return isLost(gameInfo.lives) || isWin(gameInfo);
