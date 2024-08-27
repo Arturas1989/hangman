@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Letter from "./Letter";
 import React from "react";
 import { GuessedLetter } from "../../types/GuessedLetter";
+import { letters } from "../../utils/constants";
 
 type KeyBoardProps = {
   handleGuess: (letter: string) => void;
@@ -10,7 +11,6 @@ type KeyBoardProps = {
 
 const KeyBoard = ({handleGuess, getLetterClassName}: KeyBoardProps) => {
   console.log('keyboard rendered')
-  const letters = 'abcdefghijklmnopqrstuvwxyz';
   let row: ReactNode[] = [], count = 0, rowIndex = 0;
   return (
     <div className="keyboard">

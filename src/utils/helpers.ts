@@ -2,7 +2,7 @@ import { CountryData } from "../types/CountryData";
 import { GameInfo } from "../types/GameInfo";
 import { Message } from "../types/Message";
 import { Pieces } from "../types/Pieces";
-import { livesBelowShowPieces, messages } from "./constants";
+import { letters, livesBelowShowPieces, messages } from "./constants";
 
 
 
@@ -64,4 +64,6 @@ export const getRandomCountryInfo = (countryData: CountryData) => {
   const countriesInfo = Object.entries(countryData);
   const randomIndex = getRandomIndex(countriesInfo.length);
   return countriesInfo[randomIndex];
-} 
+}
+
+export const keyPressAllowed = (key: string) => letters.includes(key.toLowerCase())
