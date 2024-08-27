@@ -24,7 +24,6 @@ function App() {
     losingScore: 0,
   });
 
-  console.log(gameInfo)
   useNewWord(setGameInfo, gameInfo.needNewWord);
 
   return (
