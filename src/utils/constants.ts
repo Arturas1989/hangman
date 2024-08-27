@@ -15,3 +15,5 @@ export const livesBelowShowPieces: Pieces = {
   'left-leg' : 2,
   'right-leg' : 1,
 }
+
+export const letters = 'abcdefghijklmnopqrstuvwxyz';
