@@ -6,8 +6,12 @@ type ResetButtonProps = {
 };
 
 export const ResetButton = ({ children, onClick }: ResetButtonProps) => {
+  const preventSpaceBar = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if(e.key === ' ') e.preventDefault();
+  }
   return (
-    <button 
+    <button
+      onKeyUp={preventSpaceBar} 
       onClick={onClick ? (e) => onClick(e) : undefined} 
       className='reset pointer'
     >
