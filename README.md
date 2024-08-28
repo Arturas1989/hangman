@@ -7,11 +7,11 @@ This is a web based word guessing game.
 This project includes:
 
 - Responsive design;
-- Data from a country cities api for the words;
+- Fetching data from the country flag api;
 - Saving game state to the local storage;
 - Ability to use a web keyboard;
 - Ability to use your own keyboard;
-- Hangman animations
+- Hangman animations;
 - Other game functionalities such as: showing winning, losing messages, highlighting letters;
 
 ## Cloning the repository
