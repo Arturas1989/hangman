@@ -5,7 +5,6 @@ type PieceProps = {
 };
 
 const Piece = ({ className }: PieceProps) => {
-  console.log(className + ' renders')
   return (
     <div className={className}></div>
   )

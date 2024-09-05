@@ -38,7 +38,6 @@ export const Game = ({ gameInfo, setGameInfo}: GameProps) => {
 
   const {lives, correctLetters, incorrectLetters, winningScore, losingScore} = gameInfo
   const handleGuess = useCallback((letter: string) => {
-    console.log('pressed')
       
     setGameInfo((prevGame) => {
       if(prevGame.gamePaused) return {...prevGame, gamePaused: false, needNewWord: true, wasWin: false, wasLoss: false};
