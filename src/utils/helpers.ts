@@ -3,6 +3,7 @@ import { GameInfo } from "../types/GameInfo";
 import { Message } from "../types/Message";
 import { Pieces } from "../types/Pieces";
 import { letters, livesBelowShowPieces, messages } from "./constants";
+import CryptoJS from 'crypto-js';
 
 
 
@@ -53,7 +54,6 @@ export const updatedGame = (gameInfo: GameInfo, letter: string) => {
 }
 
 export const messageClass = (gameInfo: GameInfo): Message => {
-  // console.log(gameInfo);
   if(gameInfo.wasWin) return messages['win'];
   if(gameInfo.wasLoss) return messages['lose'];
   return messages['default'];
@@ -70,3 +70,23 @@ export const getRandomCountryInfo = (countryData: CountryData) => {
 }
 
 export const keyPressAllowed = (key: string) => letters.includes(key.toLowerCase())
+
+export const addStoragePrototypes = () => {
+  const _key = 'some key';
+  const encrypt = (txt: string) => CryptoJS.AES.encrypt(txt, _key).toString();
+  const decrypt = (txt: string) => CryptoJS.AES.decrypt(txt, _key).toString(CryptoJS.enc.Utf8);
+  
+  const manipulateLocalStorage = () => {
+    Storage.prototype.setEncryptedItem = function (key: string, value: string) {
+      localStorage.setItem(key, encrypt(value));
+    };
+
+    Storage.prototype.getDecryptedItem = function (key: string) {
+      const data = localStorage.getItem(key) || '';
+      return decrypt(data) || null;
+    };
+  };
+
+  manipulateLocalStorage();
+};
+
