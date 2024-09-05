@@ -29,7 +29,6 @@ export const useNewWord = (setGameInfo: React.Dispatch<React.SetStateAction<Game
           winningScore: prev.winningScore,
           losingScore: prev.losingScore,
          }));
-         console.log(1)
       } catch(e){
         console.log('failed to fetch')
       }

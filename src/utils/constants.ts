@@ -17,3 +17,20 @@ export const livesBelowShowPieces: Pieces = {
 }
 
 export const letters = 'abcdefghijklmnopqrstuvwxyz';
+
+export const initialGameInfo = {
+  guess: '',
+  prevGuess: '',
+  flag_url: '',
+  game_loaded: false,
+  needNewWord: true,
+  wasWin: false,
+  wasLoss: false,
+  gamePaused: false,
+  lives: 6,
+  correctLetters: [],
+  incorrectLetters: [],
+  lettersCount: 0,
+  winningScore: 0,
+  losingScore: 0,
+}

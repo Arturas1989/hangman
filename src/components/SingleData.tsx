@@ -6,7 +6,6 @@ type SingleDataProps = {
 };
 
 const SingleData = ({ children }: SingleDataProps) => {
-  console.log('single data renders')
   return (
     <span>{children}</span>
   )

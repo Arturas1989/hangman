@@ -10,7 +10,6 @@ type KeyBoardProps = {
 }
 
 const KeyBoard = ({handleGuess, getLetterClassName}: KeyBoardProps) => {
-  console.log('keyboard rendered')
   let row: ReactNode[] = [], count = 0, rowIndex = 0;
   return (
     <div className="keyboard">

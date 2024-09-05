@@ -5,7 +5,6 @@ type WordProps = {
 };
 
 const Word = ({ splitIntoLetters }: WordProps) => {
-  console.log('word rendered')
   return (
     <div className="word-guess">{splitIntoLetters()}</div>
   )

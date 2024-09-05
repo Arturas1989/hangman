@@ -8,7 +8,6 @@ type LetterProps = {
 };
 
 const Letter = ({ children, className, onClick}: LetterProps) => {
-  console.log('letter rendered', children)
   return (
     <div onClick={onClick || undefined} className={`letter ${className || ''}`}>
       <span>{children}</span>
