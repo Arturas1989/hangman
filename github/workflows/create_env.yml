@@ -1,0 +1,11 @@
+name: Create env
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+    steps:
+    - name: create env
+      run: echo "${{secrets.ENCRYPTION_KEY }}" > .env
