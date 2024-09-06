@@ -72,7 +72,7 @@ export const getRandomCountryInfo = (countryData: CountryData) => {
 export const keyPressAllowed = (key: string) => letters.includes(key.toLowerCase())
 
 export const addStoragePrototypes = () => {
-  const _key = 'some key';
+  const _key = process.env.REACT_APP_ENCRYPTION_KEY || '';
   const encrypt = (txt: string) => CryptoJS.AES.encrypt(txt, _key).toString();
   const decrypt = (txt: string) => CryptoJS.AES.decrypt(txt, _key).toString(CryptoJS.enc.Utf8);
   
