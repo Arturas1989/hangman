@@ -83,7 +83,11 @@ export const addStoragePrototypes = () => {
 
     Storage.prototype.getDecryptedItem = function (key: string) {
       const data = localStorage.getItem(key) || '';
-      return decrypt(data) || null;
+      let decrypted = null;
+      try{
+        decrypted = decrypt(data)
+      } catch(e){}
+      return decrypted;
     };
   };
 
